@@ -1,5 +1,5 @@
 import numpy as np
-from softmaxCost import softmaxCost
+import softmax
 
 ################################## CALCULATE NUMERICAL GRADIENT ###############################################
 
@@ -16,8 +16,8 @@ def numericalgrad(theta, numClasses, inputSize, lam, trainData, trainLabel, thet
     for i in range(thetaLen):
         vec = np.zeros((thetaLen, 1))
         vec[i] = 1
-        jp, gradp = softmaxCost(theta+ep*vec, numClasses, inputSize, lam, trainData, trainLabel)
-        jm, gradm = softmaxCost(theta-ep*vec, numClasses, inputSize, lam, trainData, trainLabel)
+        jp, gradp = softmax.softmaxCost(theta+ep*vec, numClasses, inputSize, lam, trainData, trainLabel)
+        jm, gradm = softmax.softmaxCost(theta-ep*vec, numClasses, inputSize, lam, trainData, trainLabel)
         numGrad[i] = (jp-jm)/2./ep
 
     # compare numerical gradient with calculated gradient
